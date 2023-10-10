@@ -1,19 +1,25 @@
+import player from "./assets/player";
 export default class Game {
   constructor(width, height) {
-    this.width = width
-    this.height = height
-    this.keys = []
-    this.enemies = []
-    this.gameOver = false
-    this.gravity = 1
-    this.debug = false
+    this.width = width;
+    this.height = height;
+    this.keys = [];
+    this.enemies = [];
+    this.gameOver = false;
+    this.gravity = 1;
+    this.debug = false;
+
+    this.player = new player(this);
   }
 
   update(deltaTime) {
     if (!this.gameOver) {
-      this.gameTime += deltaTime
+      this.gameTime += deltaTime;
     }
+    this.player.update(deltaTime);
   }
 
-  draw(context) {}
+  draw(context) {
+    this.player.draw(context);
+  }
 }
