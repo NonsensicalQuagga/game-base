@@ -1,3 +1,4 @@
+import Projectile from "./Projectile";
 export default class player{
     constructor(game){
         this.game = game;
@@ -5,6 +6,8 @@ export default class player{
         this.height = 64;
         this.x = 50;
         this.y = 100;
+
+        this.projectiles = []
 
         this.speedX = 0;
         this.speedY = 0;
@@ -27,11 +30,26 @@ export default class player{
         
         this.x += this.speedX;
         this.y += this.speedY;
+
+        this.projectiles.forEach(projectile => {
+            projectile.update();
+        });
+        this.projectiles = this.projectiles.filter(
+        (projectile) => !projectile.markedForDeletion)
     }
 
     draw(context){
         context.fillStyle = '#f00';
         context.fillRect(this.x, this.y, this.width, this.height);
+
+        this.projectiles.forEach((projectile) => {
+            projectile.draw(context);
+          })
+    }
+
+    shoot(){
+        this.projectiles.push(
+            new Projectile(this.game, this.x + this.width, this.y + this.height/2));
     }
 
 }
