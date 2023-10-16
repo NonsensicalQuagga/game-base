@@ -12,3 +12,12 @@ Skapade projektet utifrån dokumentationen.
 Skapat projektiler, ui och en knapp som startar "game over".
 
 Hadde inga problem under lektionen.
+
+---
+15-10-2023
+
+Skapat fiender och kollision med dom. Ett system för score och liv som också visas på skärmen.
+
+Hadde inga problem under lektionen.
+
+Komma ihåg: Borde skapa en till fiende.
