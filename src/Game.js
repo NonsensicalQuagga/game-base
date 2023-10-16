@@ -36,7 +36,7 @@ export default class Game {
 
     this.enemies.forEach((enemy) =>  {
       enemy.update(deltaTime)
-      if(this.checkCollision(this.player, enemy)) enemy.markedForDeletion = truek;
+      if(this.checkCollision(this.player, enemy)) enemy.markedForDeletion = true;
       
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
