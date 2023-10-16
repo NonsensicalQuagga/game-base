@@ -19,6 +19,8 @@ export default class Game {
     this.enemyInterval = 1000;
 
     this.player = new player(this);
+    this.life = 3;
+
   }
 
   update(deltaTime) {
@@ -36,7 +38,11 @@ export default class Game {
 
     this.enemies.forEach((enemy) =>  {
       enemy.update(deltaTime)
-      if(this.checkCollision(this.player, enemy)) enemy.markedForDeletion = true;
+      if(this.checkCollision(this.player, enemy)){ 
+        enemy.markedForDeletion = true;
+        this.life --;
+        if(this.life <= 0) this.gameOver = true;
+      }
       
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {

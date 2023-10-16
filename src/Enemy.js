@@ -9,7 +9,11 @@ export default class Enemy{
 
     update(){
         this.x += this.speedX;
-        if(this.x < 0) this.markedForDeletion = true;
+        if(this.x < 0){ 
+            this.markedForDeletion = true;
+            this.game.life --;
+            if(this.game.life <= 0) this.game.gameOver = true;
+        }
     }
 
     draw(context){
