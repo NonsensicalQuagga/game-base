@@ -18,13 +18,23 @@ export default class UserInterface{
         context.fillText(
             `Time: ${(this.game.gameTime * 0.001).toFixed(1)}`,
             20,
-            100
+            60
         );
         context.fillText(
           `Bullets: ${(this.game.player.ammunition - this.game.player.projectiles.length)} / ${(this.game.player.ammunition)}`,
           20,
-          130
+          90
       );
+        context.fillText(
+          `Score: ${(this.game.score)}`,
+          20,
+          30
+      );
+      context.fillText(
+        `hp: ${(this.game.life)}`,
+        20,
+        460
+    );
 
         if(this.game.gameOver){
             context.textAlign = 'center'

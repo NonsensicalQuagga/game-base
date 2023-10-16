@@ -13,6 +13,7 @@ export default class Game {
     this.gravity = 1;
     this.debug = false;
     this.gameTime = 0;
+    this.score = 0;
 
     this.enemies = [];
     this.enemyTimer = 0;
@@ -41,13 +42,17 @@ export default class Game {
       if(this.checkCollision(this.player, enemy)){ 
         enemy.markedForDeletion = true;
         this.life --;
+        this.score += enemy.scorePoints;
         if(this.life <= 0) this.gameOver = true;
       }
       
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           enemy.lives --;
-          if(enemy.lives <= 0) enemy.markedForDeletion = true;
+          if(enemy.lives <= 0){
+            enemy.markedForDeletion = true;
+            this.score += enemy.scorePoints;
+          } 
           projectile.markedForDeletion = true;
         }
       });
