@@ -20,6 +20,11 @@ export default class UserInterface{
             20,
             100
         );
+        context.fillText(
+          `Bullets: ${(10 - this.game.player.projectiles.length)} / ${(this.game.player.ammunition)}`,
+          20,
+          130
+      );
 
         if(this.game.gameOver){
             context.textAlign = 'center'
