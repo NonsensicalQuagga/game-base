@@ -40,7 +40,8 @@ export default class Game {
       
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
-          enemy.markedForDeletion = true;
+          enemy.lives --;
+          if(enemy.lives <= 0) enemy.markedForDeletion = true;
           projectile.markedForDeletion = true;
         }
       });
