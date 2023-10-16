@@ -21,7 +21,7 @@ export default class UserInterface{
             100
         );
         context.fillText(
-          `Bullets: ${(10 - this.game.player.projectiles.length)} / ${(this.game.player.ammunition)}`,
+          `Bullets: ${(this.game.player.ammunition - this.game.player.projectiles.length)} / ${(this.game.player.ammunition)}`,
           20,
           130
       );
