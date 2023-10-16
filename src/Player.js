@@ -8,6 +8,8 @@ export default class player{
         this.y = 100;
 
         this.projectiles = []
+        this.lastProjectile = this.game.gameTime;
+        this.ammunition = 10;
 
         this.speedX = 0;
         this.speedY = 0;
@@ -48,8 +50,11 @@ export default class player{
     }
 
     shoot(){
-        this.projectiles.push(
-            new Projectile(this.game, this.x + this.width, this.y + this.height/2));
+        if(this.game.gameTime * 0.001 > this.lastProjectile + 0.1 && this.projectiles.length < this.ammunition){
+            this.lastProjectile = this.game.gameTime * 0.001;
+            this.projectiles.push(
+                new Projectile(this.game, this.x + this.width, this.y + this.height/2));
+        }
     }
 
 }
