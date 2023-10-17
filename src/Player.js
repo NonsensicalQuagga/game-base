@@ -10,10 +10,14 @@ export default class player{
         this.projectiles = []
         this.lastProjectile = this.game.gameTime;
         this.ammunition = 10;
+        this.bulletsFired = 0;
+        this.realoadTime = 1000;  //milliseconds
+        this.canReaload = false;
 
         this.speedX = 0;
         this.speedY = 0;
         this.maxSpeed = 10;
+        
     }
 
     update(deltaTime){
@@ -52,11 +56,17 @@ export default class player{
     }
 
     shoot(){
-        if(this.game.gameTime * 0.001 > this.lastProjectile + 0.1 && this.projectiles.length < this.ammunition){
+        if(this.game.gameTime * 0.001 > this.lastProjectile + 0.1 && this.bulletsFired < this.ammunition){
+            this.bulletsFired++;
+            this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height/2));
         }
+        else if (this.bulletsFired >= this.ammunition && this.canReaload){
+            setTimeout(() => {this.bulletsFired = 0;}, this.realoadTime);
+            this.canReaload = false;
+        } 
     }
 
 }
