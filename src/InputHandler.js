@@ -15,7 +15,15 @@ export default class InputHandler {
             
             if (event.key === 'd') this.game.debug = !this.game.debug;
 
-            if (event.key === 'o') this.game.gameOver = true;
+            if (event.key === 'o'){
+                this.game.gameOver = !this.game.gameOver;
+                if (!this.game.gameOver){ 
+                    this.game.life = 3;
+                    this.game.score = 0;
+                    this.game.gameTime = 0;
+                    this.game.enemies = [];
+                }
+            } 
         })
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {

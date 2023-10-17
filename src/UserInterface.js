@@ -44,6 +44,12 @@ export default class UserInterface{
                 this.game.width/2,
                 this.game.height/2 
             );
+            context.font = `20px ${this.fontFamily}`
+            context.fillText(
+                'Press o to start again.',
+                this.game.width/2,
+                this.game.height/2 + 40 
+            );
         }
         if (this.game.debug) {
             context.font = `15px Arial`
