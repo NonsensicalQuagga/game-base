@@ -33,6 +33,8 @@ export default class player{
         this.x += this.speedX;
         this.y += this.speedY;
 
+        if(this.game.keys.includes(' ')) this.shoot();
+
         this.projectiles.forEach(projectile => {
             projectile.update();
         });
