@@ -48,7 +48,7 @@ export default class UserInterface{
             context.fillText(
                 'Press o to start again.',
                 this.game.width/2,
-                this.game.height/2 + 40 
+                this.game.height/2 + 30 
             );
         }
         if (this.game.debug) {

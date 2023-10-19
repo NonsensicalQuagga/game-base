@@ -6,14 +6,16 @@ export default class Projectile{
         this.x = x;
         this.y = y;
 
-        this.speed = 5;
+        this.speedX = 5;
+        this.speedY = 0;
         this.damage = 1;
         this.markedForDeletion = false;
 
     }
 
     update(){
-        this.x += this.speed;
+        this.x += this.speedX;
+        this.y += this.speedY;
         if (this.x > this.game.width) this.markedForDeletion = true;
     }
 

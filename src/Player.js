@@ -16,7 +16,7 @@ export default class player{
 
         this.speedX = 0;
         this.speedY = 0;
-        this.maxSpeed = 10;
+        this.maxSpeed = 7;
         
     }
 
