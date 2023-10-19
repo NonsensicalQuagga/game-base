@@ -1,15 +1,15 @@
 import Enemy from "./Enemy";
 
-export default class Slime extends Enemy{
+export default class Boss extends Enemy{
     constructor(game){
         super(game)
-        this.width = 32;
-        this.height = 32;
+        this.width = 50;
+        this.height = 100;
         this.x = this.game.width;
         this.y = Math.random() * (this.game.height * 0.9 - this.height);
-        this.speedX = Math.random() * -1.5 - 0.5;
-        this.lives = 2;
-        this.scorePoints = 100;
+        this.speedX = -0.5;
+        this.lives = 20;
+        this.scorePoints = 10000;
         this.color = '#0f0';
     }
 

@@ -26,7 +26,12 @@ export default class InputHandler {
                     this.game.player.bulletsFired = 0;
                     this.game.player.projectiles = [];
                 }
-            } 
+            }
+            
+            if(event.key === 'b'){
+                this.game.addBoss();
+                console.log("spawn boss")
+            }
         })
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {

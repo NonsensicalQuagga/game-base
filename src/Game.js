@@ -3,6 +3,7 @@ import player from "./Player";
 import UserInterface from "./UserInterface";
 import Slime from "./Slime";
 import Background from "./Background";
+import Boss from "./Boss";
 export default class Game {
   constructor(width, height) {
     this.width = width;
@@ -19,7 +20,7 @@ export default class Game {
 
     this.enemies = [];
     this.enemyTimer = 0;
-    this.enemyInterval = 1000;
+    this.enemyInterval = 1300;
 
     this.player = new player(this);
     this.life = 3;
@@ -37,7 +38,12 @@ export default class Game {
     this.player.update(deltaTime);
 
     if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
-      this.addEnemy();
+      let random = Math.random()
+      if(Math.random() > 0.9){
+        this.addBoss();
+        console.log("Boss time")
+      } 
+        else this.addSlime();
       this.enemyTimer = 0;
     } else {
       this.enemyTimer += deltaTime;
@@ -74,8 +80,12 @@ export default class Game {
     this.enemies.forEach((enemy) => enemy.draw(context));
   }
 
-  addEnemy() {
+  addSlime() {
     this.enemies.push(new Slime(this))
+  }
+
+  addBoss(){
+    this.enemies.push(new Boss(this))
   }
 
   checkCollision(object1, object2){
