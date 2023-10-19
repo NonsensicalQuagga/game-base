@@ -21,3 +21,9 @@ Skapat fiender och kollision med dom. Ett system för score och liv som också v
 Hadde inga problem under lektionen.
 
 Komma ihåg: Borde skapa en till fiende.
+---
+19-10-2023
+
+Skapat paralax scrolling och en ny fiende
+
+Hadde lite problem med ad göra en till fiende
