@@ -52,8 +52,10 @@ export default class Game {
     this.enemies.forEach((enemy) =>  {
       enemy.update(deltaTime)
       if(this.checkCollision(this.player, enemy)){ 
-        enemy.markedForDeletion = true;
-        this.life --;
+        
+        if(enemy.lives - 20 <= 0)  enemy.markedForDeletion = true;
+        else enemy.lives -= 20;
+        this.life -= enemy.collisionDamage;
         this.score += enemy.scorePoints;
         if(this.life <= 0) this.gameOver = true;
       }
