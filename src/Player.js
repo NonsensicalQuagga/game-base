@@ -13,6 +13,7 @@ export default class player{
         this.bulletsFired = 0;
         this.realoadTime = 1000;  //milliseconds
         this.canReaload = false;
+    
 
         this.speedX = 0;
         this.speedY = 0;

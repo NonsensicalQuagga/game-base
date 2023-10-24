@@ -5,6 +5,7 @@ import Slime from "./Slime";
 import Background from "./Background";
 import Boss from "./Boss";
 import HealthPotion from "./HealthPotion";
+import DamageBoost from "./DamageBoost";
 export default class Game {
   constructor(width, height) {
     this.width = width;
@@ -23,9 +24,11 @@ export default class Game {
     this.enemyTimer = 0;
     this.enemyInterval = 1300;
     this.powerUps = [];
+    
 
     this.player = new player(this);
     this.life = 3;
+    this.damageModifier = 1;
 
     this.speed = 1
   }
@@ -54,6 +57,7 @@ export default class Game {
         powerUp.markedForDeletion = true;
         this.life += powerUp.collisionDamage;
         this.score -= powerUp.scorePoints;
+        powerUp.effect()
       }
     })
 
@@ -61,9 +65,9 @@ export default class Game {
       enemy.update(deltaTime)
       if(this.checkCollision(this.player, enemy)){ 
         
-        if(enemy.lives - 20 <= 0)  enemy.markedForDeletion = true;
-        else enemy.lives -= 20;
-        this.life -= enemy.collisionDamage;
+        if(enemy.lives - 20 * this.damageModifier <= 0)  enemy.markedForDeletion = true;
+        else enemy.lives -= 20  * this.damageModifier;
+        this.life -= enemy.collisionDamage * this.damageModifier;
         this.score += enemy.scorePoints;
         if(this.life <= 0) this.gameOver = true;
       }
@@ -71,11 +75,14 @@ export default class Game {
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           projectile.markedForDeletion = true;
-          enemy.lives -= projectile.damage;
+          enemy.lives -= projectile.damage * this.damageModifier;
           if(enemy.lives <= 0){
-            if(Math.random() > 0.95) {
-              let newPowerUp = new HealthPotion(this);
-              newPowerUp.setXY(enemy);
+            if(Math.random() > 0.5) {
+              let newPowerUp;
+              let random = Math.random() * 2;
+              if(random >= 0 && random < 1) newPowerUp = new HealthPotion(this)
+                else if(random >= 1 && random <= 2) newPowerUp = new DamageBoost(this);
+              newPowerUp.setPosition(enemy);
               this.powerUps.push(newPowerUp);
             }
             enemy.markedForDeletion = true;
@@ -108,6 +115,10 @@ export default class Game {
 
   addHealthPotion(){
     this.powerUps.push(new HealthPotion(this))
+  }
+
+  addDamageBoost(){
+    this.powerUps.push(new DamageBoost(this))
   }
 
   checkCollision(object1, object2){

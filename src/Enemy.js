@@ -31,4 +31,12 @@ export default class Enemy{
             context.fillText(`y: ${this.y.toFixed()}`, this.x + 20, this.y - 20)
         }
     }
+
+
+    // for powerups 
+    setPosition(enemy) {
+        this.x = enemy.x;
+        this.y = enemy.y;
+        this.speedX = enemy.speedX;
+    }
 }

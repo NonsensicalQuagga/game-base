@@ -38,6 +38,11 @@ export default class InputHandler {
                 console.log("spawn health potion")
             }
 
+            if(event.key === 'd'){
+                this.game.addDamageBoost();
+                console.log("spawn damage boost")
+            }
+
         })
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {
