@@ -77,7 +77,7 @@ export default class Game {
           projectile.markedForDeletion = true;
           enemy.lives -= projectile.damage * this.damageModifier;
           if(enemy.lives <= 0){
-            if(Math.random() > 0.5) {
+            if(Math.random() > 0.95) {
               let newPowerUp;
               let random = Math.random() * 2;
               if(random >= 0 && random < 1) newPowerUp = new HealthPotion(this)

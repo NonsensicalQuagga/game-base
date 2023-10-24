@@ -8,7 +8,7 @@ export default class HealthPotion extends Enemy{
         this.y = 60;
         this.width = 20;
         this.height = 20;
-        this.color = '#9f0';
+        this.color = '#ba0202';
         this.scorePoints = 10000;
         this.speedX = -3;
     }

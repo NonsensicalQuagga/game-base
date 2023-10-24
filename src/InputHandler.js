@@ -25,6 +25,8 @@ export default class InputHandler {
                     this.game.player.lastProjectile = 0;
                     this.game.player.bulletsFired = 0;
                     this.game.player.projectiles = [];
+                    this.game.player.x = 50;
+                    this.game.player.y = 100;
                 }
             }
             
@@ -38,7 +40,7 @@ export default class InputHandler {
                 console.log("spawn health potion")
             }
 
-            if(event.key === 'd'){
+            if(event.key === 'j'){
                 this.game.addDamageBoost();
                 console.log("spawn damage boost")
             }
