@@ -10,12 +10,13 @@ export default class player{
         this.projectiles = []
         this.lastProjectile = this.game.gameTime;
         this.ammunition = 10;
-        this.bulletsFired = 0;
         this.realoadTime = 1000;  //milliseconds
         this.canReaload = false;
         this.gun = 1;
         this.lastGun = 1;
         this.fireRate = 0.1;
+        this.shotgunAmmoFired = 0;
+        this.pistolAmmoFired = 0;
 
         this.speedX = 0;
         this.speedY = 0;
@@ -69,42 +70,43 @@ export default class player{
     }
 
     pistol(){
-        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.bulletsFired < this.ammunition){
-            this.bulletsFired++;
+        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.pistolAmmoFired < this.ammunition){
+            this.pistolAmmoFired++;
             this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 1));
         }
-        else if (this.bulletsFired >= this.ammunition && this.canReaload){
-            setTimeout(() => {this.bulletsFired = 0;}, this.realoadTime);
+        else if (this.pistolAmmoFired >= this.ammunition && this.canReaload){
+            setTimeout(() => {this.pistolAmmoFired = 0;}, this.realoadTime);
             this.canReaload = false;
         } 
     }
     pistolStats(){
         this.ammunition = 10;
         this.realoadTime = 1000;
-        this.bulletsFired = 0;
         this.fireRate = 0.1;
     }
 
     shotgun(){
-        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.bulletsFired < this.ammunition){
-            this.bulletsFired++;
+        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.shotgunAmmoFired < this.ammunition){
+            this.shotgunAmmoFired++;
             this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
-            this.projectiles.push(
-                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 0.2));
+            /*this.projectiles.push(
+                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 0.2));*/
 
-            for(let i = 0; i < 15; i++){
+            for(let i = 0; i < 16; i++){
                 let spread = Math.random() * 4 - 2;
-                this.projectiles.push(
-                    new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.sqrt(5 * 5 - spread * spread), spread, 0.2));
+                let wow = new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.random() +5, spread, 0.4); //Math.sqrt(5 * 5 - spread * spread)
+                setTimeout(() => {wow.markedForDeletion = true}, 1000)
+                this.projectiles.push(wow)
+                                       
             }
         
         }
-            else if (this.bulletsFired >= this.ammunition && this.canReaload){
-                setTimeout(() => {this.bulletsFired = 0;}, this.realoadTime);
+            else if (this.shotgunAmmoFired >= this.ammunition && this.canReaload){
+                setTimeout(() => {this.shotgunAmmoFired = 0;}, this.realoadTime);
                 this.canReaload = false;
         }
     }
@@ -112,8 +114,8 @@ export default class player{
     shotgunStats(){
         this.ammunition = 2;
         this.realoadTime = 2000;
-        this.bulletsFired = 0;
-        this.fireRate = 0.1;
+        this.bulletsFired = this.shotgunAmmoFired;
+        this.fireRate = 0.05;
     }
 
 

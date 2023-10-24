@@ -8,9 +8,7 @@ export default class Projectile{
 
         this.speedX = speedX;
         this.speedY = speedY;
-        this.damage = 1;
-        if(damage != null) this.damage = damage;
-        console.log(damage)
+        this.damage = damage;
         this.markedForDeletion = false;
         
 

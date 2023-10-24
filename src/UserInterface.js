@@ -20,11 +20,19 @@ export default class UserInterface{
             20,
             60
         );
-        context.fillText(
-          `Bullets: ${(this.game.player.ammunition - this.game.player.bulletsFired)} / ${(this.game.player.ammunition)}`,
+        if(this.game.player.gun === 1) 
+        context.fillText(  
+          `Bullets: ${(this.game.player.ammunition - this.game.player.pistolAmmoFired)} / ${(this.game.player.ammunition)}`,
           20,
           90
       );
+          else{
+            context.fillText(  
+              `Shells: ${(this.game.player.ammunition - this.game.player.shotgunAmmoFired)} / ${(this.game.player.ammunition)}`,
+              20,
+              90
+            );
+          }
         context.fillText(
           `Score: ${(this.game.score)}`,
           20,
