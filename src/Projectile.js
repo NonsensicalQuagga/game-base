@@ -10,6 +10,7 @@ export default class Projectile{
         this.speedY = 0;
         this.damage = 1;
         this.markedForDeletion = false;
+        this.damage = 1;
 
     }
 

@@ -32,6 +32,12 @@ export default class InputHandler {
                 this.game.addBoss();
                 console.log("spawn boss")
             }
+
+            if(event.key === 'h'){
+                this.game.addHealthPotion();
+                console.log("spawn boss")
+            }
+
         })
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {

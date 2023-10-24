@@ -4,6 +4,7 @@ import UserInterface from "./UserInterface";
 import Slime from "./Slime";
 import Background from "./Background";
 import Boss from "./Boss";
+import HealthPotion from "./HealthPotion";
 export default class Game {
   constructor(width, height) {
     this.width = width;
@@ -21,6 +22,7 @@ export default class Game {
     this.enemies = [];
     this.enemyTimer = 0;
     this.enemyInterval = 1300;
+    this.powerUps = [];
 
     this.player = new player(this);
     this.life = 3;
@@ -49,6 +51,15 @@ export default class Game {
       this.enemyTimer += deltaTime;
     }
 
+    this.powerUps.forEach((powerUp) =>  {
+      powerUp.update(deltaTime)
+      if(this.checkCollision(this.player, powerUp)){  
+        powerUp.markedForDeletion = true;
+        this.life -= powerUp.collisionDamage;
+        this.score += powerUp.scorePoints;
+      }
+    })
+
     this.enemies.forEach((enemy) =>  {
       enemy.update(deltaTime)
       if(this.checkCollision(this.player, enemy)){ 
@@ -62,17 +73,19 @@ export default class Game {
       
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
-          enemy.lives --;
+          projectile.markedForDeletion = true;
+          enemy.lives -= projectile.damage;
           if(enemy.lives <= 0){
             enemy.markedForDeletion = true;
             this.score += enemy.scorePoints;
           } 
-          projectile.markedForDeletion = true;
+          
         }
       });
     });
 
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion);
+    this.powerUps = this.powerUps.filter((powerUp) => !powerUp.markedForDeletion);
   }
 
   draw(context) {
@@ -80,6 +93,7 @@ export default class Game {
     this.player.draw(context);
     this.ui.draw(context);
     this.enemies.forEach((enemy) => enemy.draw(context));
+    this.powerUps.forEach((enemy) => enemy.draw(context));
   }
 
   addSlime() {
@@ -88,6 +102,10 @@ export default class Game {
 
   addBoss(){
     this.enemies.push(new Boss(this))
+  }
+
+  addHealthPotion(){
+    this.powerUps.push(new HealthPotion(this))
   }
 
   checkCollision(object1, object2){
