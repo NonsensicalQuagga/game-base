@@ -9,7 +9,7 @@ export default class DamageBoost extends Enemy{
         this.width = 20;
         this.height = 20;
         this.color = '#a135d4';
-        this.scorePoints = 10000;
+        this.scorePoints = 5000;
         this.speedX = -3;
         this.damageincrease = 0.5;
     }
