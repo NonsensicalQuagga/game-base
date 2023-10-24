@@ -35,7 +35,7 @@ export default class InputHandler {
 
             if(event.key === 'h'){
                 this.game.addHealthPotion();
-                console.log("spawn boss")
+                console.log("spawn health potion")
             }
 
         })
