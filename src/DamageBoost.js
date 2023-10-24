@@ -12,6 +12,7 @@ export default class DamageBoost extends Enemy{
         this.scorePoints = 5000;
         this.speedX = -3;
         this.damageincrease = 0.5;
+        this.lives = -69;
     }
 
     effect(){

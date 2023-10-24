@@ -11,6 +11,7 @@ export default class HealthPotion extends Enemy{
         this.color = '#ba0202';
         this.scorePoints = 3000;
         this.speedX = -3;
+        this.lives = -69;
     }
 effect(){};
     

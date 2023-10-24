@@ -13,7 +13,9 @@ export default class player{
         this.bulletsFired = 0;
         this.realoadTime = 1000;  //milliseconds
         this.canReaload = false;
-    
+        this.gun = 1;
+        this.lastGun = 1;
+        this.fireRate = 0.1;
 
         this.speedX = 0;
         this.speedY = 0;
@@ -57,17 +59,62 @@ export default class player{
     }
 
     shoot(){
-        if(this.game.gameTime * 0.001 > this.lastProjectile + 0.1 && this.bulletsFired < this.ammunition){
+        if (this.gun != this.lastGun){
+            if (this.gun === 1) this.pistolStats(); 
+            else if (this.gun === 2) this.shotgunStats();
+            this.lastGun = this.gun;
+        }
+        if(this.gun === 1) this.pistol()
+        else if (this.gun === 2) this.shotgun();
+    }
+
+    pistol(){
+        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.bulletsFired < this.ammunition){
             this.bulletsFired++;
             this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
-                new Projectile(this.game, this.x + this.width, this.y + this.height/2));
+                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 1));
         }
         else if (this.bulletsFired >= this.ammunition && this.canReaload){
             setTimeout(() => {this.bulletsFired = 0;}, this.realoadTime);
             this.canReaload = false;
         } 
     }
+    pistolStats(){
+        this.ammunition = 10;
+        this.realoadTime = 1000;
+        this.bulletsFired = 0;
+        this.fireRate = 0.1;
+    }
+
+    shotgun(){
+        if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.bulletsFired < this.ammunition){
+            this.bulletsFired++;
+            this.canReaload = true;
+            this.lastProjectile = this.game.gameTime * 0.001;
+            this.projectiles.push(
+                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 0.2));
+
+            for(let i = 0; i < 15; i++){
+                let spread = Math.random() * 4 - 2;
+                this.projectiles.push(
+                    new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.sqrt(5 * 5 - spread * spread), spread, 0.2));
+            }
+        
+        }
+            else if (this.bulletsFired >= this.ammunition && this.canReaload){
+                setTimeout(() => {this.bulletsFired = 0;}, this.realoadTime);
+                this.canReaload = false;
+        }
+    }
+
+    shotgunStats(){
+        this.ammunition = 2;
+        this.realoadTime = 2000;
+        this.bulletsFired = 0;
+        this.fireRate = 0.1;
+    }
+
 
 }

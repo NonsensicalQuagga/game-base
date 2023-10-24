@@ -45,6 +45,12 @@ export default class InputHandler {
                 console.log("spawn damage boost")
             }
 
+            if(event.key === 'q'){
+                if(this.game.player.gun === 1) this.game.player.gun = 2;
+                else this.game.player.gun = 1;
+                console.log("swap gun")
+            }
+
         })
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {
