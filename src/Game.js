@@ -41,10 +41,7 @@ export default class Game {
 
     if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
       let random = Math.random()
-      if(Math.random() > 0.9){
-        this.addBoss();
-        console.log("Boss time")
-      } 
+      if(Math.random() > 0.9) this.addBoss(); 
         else this.addSlime();
       this.enemyTimer = 0;
     } else {
@@ -55,8 +52,8 @@ export default class Game {
       powerUp.update(deltaTime)
       if(this.checkCollision(this.player, powerUp)){  
         powerUp.markedForDeletion = true;
-        this.life -= powerUp.collisionDamage;
-        this.score += powerUp.scorePoints;
+        this.life += powerUp.collisionDamage;
+        this.score -= powerUp.scorePoints;
       }
     })
 
@@ -76,6 +73,11 @@ export default class Game {
           projectile.markedForDeletion = true;
           enemy.lives -= projectile.damage;
           if(enemy.lives <= 0){
+            if(Math.random() > 0.95) {
+              let newPowerUp = new HealthPotion(this);
+              newPowerUp.setXY(enemy);
+              this.powerUps.push(newPowerUp);
+            }
             enemy.markedForDeletion = true;
             this.score += enemy.scorePoints;
           } 

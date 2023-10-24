@@ -10,12 +10,13 @@ export default class HealthPotion extends Enemy{
         this.width = 20;
         this.height = 20;
         this.color = '#9f0';
-        this.score = 1000;
+        this.scorePoints = 1000;
         this.speedX = -3;
     }
 
     setXY(enemy) {
         this.x = enemy.x;
         this.y = enemy.y;
+        this.speedX = enemy.speedX;
     }
 }
