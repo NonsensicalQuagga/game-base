@@ -98,9 +98,9 @@ export default class player{
 
             for(let i = 0; i < 16; i++){
                 let spread = Math.random() * 4 - 2;
-                let wow = new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.random() +5, spread, 0.4); //Math.sqrt(5 * 5 - spread * spread)
-                setTimeout(() => {wow.markedForDeletion = true}, 1000)
-                this.projectiles.push(wow)
+                let shotgunpellet = new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.random() +5, spread, 0.4); //Math.sqrt(5 * 5 - spread * spread)
+                setTimeout(() => {shotgunpellet.markedForDeletion = true}, 1000)
+                this.projectiles.push(shotgunpellet)
                                        
             }
         
