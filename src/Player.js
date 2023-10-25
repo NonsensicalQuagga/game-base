@@ -21,6 +21,8 @@ export default class player{
         this.speedX = 0;
         this.speedY = 0;
         this.maxSpeed = 7;
+
+        
         
     }
 
@@ -67,7 +69,7 @@ export default class player{
     pistol(){
         if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.pistolAmmoFired < this.ammunition){
             this.pistolAmmoFired++;
-            this.canReaload = true;
+            if(this.pistolAmmoFired === 10) this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 1));
@@ -75,7 +77,10 @@ export default class player{
         else if (this.pistolAmmoFired >= this.ammunition && this.canReaload){
             setTimeout(() => {this.pistolAmmoFired = 0;}, this.realoadTime);
             this.canReaload = false;
-        } 
+        }
+         else if (!this.canReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.canReaload = true;
+            
+         
     }
     pistolStats(){
         this.ammunition = 10;
@@ -86,7 +91,7 @@ export default class player{
     shotgun(){
         if(this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.shotgunAmmoFired < this.ammunition){
             this.shotgunAmmoFired++;
-            this.canReaload = true;
+            if(this.shotgunAmmoFired === 2) this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             /*this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 0.2));*/
@@ -104,11 +109,12 @@ export default class player{
                 setTimeout(() => {this.shotgunAmmoFired = 0;}, this.realoadTime);
                 this.canReaload = false;
         }
+            else if (!this.canReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.canReaload = true;
     }
 
     shotgunStats(){
         this.ammunition = 2;
-        this.realoadTime = 2000;
+        this.realoadTime = 4000;
         this.bulletsFired = this.shotgunAmmoFired;
         this.fireRate = 0.05;
     }

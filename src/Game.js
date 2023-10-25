@@ -22,7 +22,7 @@ export default class Game {
 
     this.enemies = [];
     this.enemyTimer = 0;
-    this.enemyInterval = 1300;
+    this.enemyInterval = 900;
     this.powerUps = [];
     
 
