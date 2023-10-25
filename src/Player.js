@@ -98,12 +98,10 @@ export default class player{
 
             for(let i = 0; i < 16; i++){
                 let spread = Math.random() * 4 - 2;
-                let shotgunpellet = new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.random() +5, spread, 0.4); //Math.sqrt(5 * 5 - spread * spread)
+                let shotgunpellet = new Projectile(this.game, this.x + this.width, this.y + this.height/2, Math.random() +Math.sqrt(5 * 5 - spread * spread), spread, 0.4); //Math.sqrt(5 * 5 - spread * spread)
                 setTimeout(() => {shotgunpellet.markedForDeletion = true}, 1000)
-                this.projectiles.push(shotgunpellet)
-                                       
-            }
-        
+                this.projectiles.push(shotgunpellet)                     
+            } 
         }
             else if (this.shotgunAmmoFired >= this.ammunition && this.canReaload){
                 setTimeout(() => {this.shotgunAmmoFired = 0;}, this.realoadTime);
@@ -114,7 +112,7 @@ export default class player{
 
     shotgunStats(){
         this.ammunition = 2;
-        this.realoadTime = 4000;
+        this.realoadTime = 4000; 
         this.bulletsFired = this.shotgunAmmoFired;
         this.fireRate = 0.05;
     }

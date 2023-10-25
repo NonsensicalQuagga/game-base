@@ -79,7 +79,12 @@ export default class UserInterface{
               this.game.width - 20,
               125
             );
-            context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 150);
+            context.fillText(
+              `damageboost: ${this.game.damageModifier}`,
+              this.game.width - 20,
+              150
+            );
+            context.fillText(`keys: ${this.game.keys}`, this.game.width - 20, 175);
           }
       
           context.restore();
