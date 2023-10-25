@@ -60,11 +60,6 @@ export default class player{
     }
 
     shoot(){
-        if (this.gun != this.lastGun){
-            if (this.gun === 1) this.pistolStats(); 
-            else if (this.gun === 2) this.shotgunStats();
-            this.lastGun = this.gun;
-        }
         if(this.gun === 1) this.pistol()
         else if (this.gun === 2) this.shotgun();
     }

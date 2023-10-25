@@ -46,8 +46,14 @@ export default class InputHandler {
             }
 
             if(event.key === 'q'){
-                if(this.game.player.gun === 1) this.game.player.gun = 2;
-                else this.game.player.gun = 1;
+                if(this.game.player.gun === 1){
+                    this.game.player.gun = 2;
+                    this.game.player.shotgunStats();
+                } 
+                else{
+                    this.game.player.gun = 1;
+                    this.game.player.pistolStats();
+                } 
                 console.log("swap gun")
             }
 
