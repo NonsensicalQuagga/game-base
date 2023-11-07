@@ -8,7 +8,7 @@ export default class Slime extends Enemy{
         this.x = this.game.width;
         this.y = Math.random() * (this.game.height * 0.9 - this.height);
         this.speedX = Math.random() * -1.5 - 0.5;
-        this.lives = 1.5;
+        this.lives = 3;
         this.scorePoints = 100;
         this.color = '#0f0';
     }

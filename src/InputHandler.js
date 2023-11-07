@@ -23,10 +23,11 @@ export default class InputHandler {
                     this.game.gameTime = 0;
                     this.game.enemies = [];
                     this.game.player.lastProjectile = 0;
-                    this.game.player.bulletsFired = 0;
                     this.game.player.projectiles = [];
                     this.game.player.x = 50;
                     this.game.player.y = 100;
+                    this.game.player.shotgunAmmoFired = 0;
+                    this.game.player.pistolAmmoFired = 0;
                 }
             }
             
