@@ -21,6 +21,7 @@ export default class player{
         this.beamAmmoFired = 0;
         this.beamReaload = 0;
         this.beamRealoadInterval = 150;
+        this.canUseBeam = false;
 
         this.speedX = 0;
         this.speedY = 0;
@@ -84,13 +85,13 @@ export default class player{
           // reset frameX when it reaches maxFrame
           if (this.frameX >= this.maxFrame) {
             this.frameX = 0;
-        }
+        }/*
         if (this.beamAmmoFired > 0 && this.beamReaload > this.beamRealoadInterval && this.gun != 3){
             this.beamAmmoFired--;
             this.beamReaload = 0;
         } else{
             this.beamReaload += deltaTime;
-        }
+        }*/ // Beam gains ammo passively
     }
 
     draw(context){
@@ -184,7 +185,7 @@ export default class player{
             this.beamAmmoFired++;
             if(this.beamAmmoFired === 1) this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
-            let beamPart = new Projectile(this.game, this.x + this.width, this.y + this.height/3 +1, 5, 0, 0.3, this.game.width, 30);
+            let beamPart = new Projectile(this.game, this.x + this.width, this.y + this.height/3 +1, 5, 0, 0.5, this.game.width, 30);
             setTimeout(() => {beamPart.markedForDeletion = true}, 1)
             this.projectiles.push(beamPart)
                 
@@ -192,7 +193,7 @@ export default class player{
     }
 
     beamStats(){
-        this.ammunition = 100;
+        this.ammunition = 300;
         this.bulletsFired = this.beamAmmoFired;
         this.fireRate = 0.01;
     }

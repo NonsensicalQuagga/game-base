@@ -6,6 +6,7 @@ import Background from "./Background";
 import Boss from "./Boss";
 import HealthPotion from "./HealthPotion";
 import DamageBoost from "./DamageBoost";
+import BeamTime from "./BeamTime";
 export default class Game {
   constructor(width, height) {
     this.width = width;
@@ -79,9 +80,10 @@ export default class Game {
           if(enemy.lives <= 0){
             if(Math.random() > 0.95) {
               let newPowerUp;
-              let random = Math.random() * 2;
-              if(random >= 0 && random < 1) newPowerUp = new HealthPotion(this)
-                else if(random >= 1 && random <= 2) newPowerUp = new DamageBoost(this);
+              let random = Math.random() * 9;
+              if(random >= 0 && random < 5) newPowerUp = new HealthPotion(this)
+                else if(random >= 5 && random < 8) newPowerUp = new DamageBoost(this);
+                else if(random >=8 && random <= 9) newPowerUp = new BeamTime(this);
               newPowerUp.setPosition(enemy);
               this.powerUps.push(newPowerUp);
             }
@@ -119,6 +121,10 @@ export default class Game {
 
   addDamageBoost(){
     this.powerUps.push(new DamageBoost(this))
+  }
+
+  addBeam(){
+    this.powerUps.push(new BeamTime(this))
   }
 
   checkCollision(object1, object2){

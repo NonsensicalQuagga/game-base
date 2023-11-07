@@ -28,6 +28,7 @@ export default class InputHandler {
                     this.game.player.y = 100;
                     this.game.player.shotgunAmmoFired = 0;
                     this.game.player.pistolAmmoFired = 0;
+                    this.game.player.beamAmmoFired = 0
                 }
             }
             
@@ -45,6 +46,10 @@ export default class InputHandler {
                 this.game.addDamageBoost();
                 console.log("spawn damage boost")
             }
+            if(event.key === 'k'){
+                this.game.addBeam();
+                console.log("spawn beam")
+            }
 
             if(event.key === 'q'){
                 if(this.game.player.gun === 1){
@@ -61,7 +66,8 @@ export default class InputHandler {
                 }
                 console.log("swap gun")
             }
-            if(event.key === 'e')if(this.game.player.beamAmmoFired == 0) {
+            
+            if(event.key === 'e')if(this.game.player.beamAmmoFired <= 150 && this.game.player.canUseBeam) {
                 this.game.player.gun = 3;
                 this.game.player.beamStats();
             }
