@@ -1,9 +1,10 @@
 import Projectile from "./Projectile";
+import spriteImage from "./assets/sprites/Idle Run (78x58).png";
 export default class player{
     constructor(game){
         this.game = game;
-        this.width = 32;
-        this.height = 64;
+        this.width = 78;
+        this.height = 58;
         this.x = 50;
         this.y = 100;
 
@@ -21,7 +22,18 @@ export default class player{
         this.speedX = 0;
         this.speedY = 0;
         this.maxSpeed = 7;
+        
+        const image = new Image();
+        image.src = spriteImage;
+        this.image = image;
 
+        this.frameX = 0;
+        this.frameY = 1;
+        this.maxFrame = 8;
+        this.fps = 20;
+        this.timer = 0;
+        this.interval = 1000/this.fps;
+        this.flip = false;
         
         
     }
@@ -43,6 +55,14 @@ export default class player{
         this.x += this.speedX;
         this.y += this.speedY;
 
+        if (this.speedX !== 0) {
+            this.frameY = 1;
+            this.maxFrame = 8;
+          } else {
+            this.frameY = 0;
+            this.maxFrame = 11;
+          }
+
         if(this.game.keys.includes(' ')) this.shoot();
 
         this.projectiles.forEach(projectile => {
@@ -50,15 +70,47 @@ export default class player{
         });
         this.projectiles = this.projectiles.filter(
         (projectile) => !projectile.markedForDeletion)
+
+        if (this.timer > this.interval) {
+            this.frameX++;
+            this.timer = 0;
+          } else {
+            this.timer += deltaTime;
+          }
+      
+          // reset frameX when it reaches maxFrame
+          if (this.frameX >= this.maxFrame) {
+            this.frameX = 0;
+        }
     }
 
     draw(context){
-        context.fillStyle = '#f00';
-        context.fillRect(this.x, this.y, this.width, this.height);
+       /* context.fillStyle = '#f00';
+        context.fillRect(this.x, this.y, this.width, this.height);*/
 
         this.projectiles.forEach((projectile) => {
             projectile.draw(context);
           })
+
+          if (this.game.debug) {
+            context.strokeRect(this.x, this.y, this.width, this.height)
+            context.fillStyle = 'black'
+            context.font = '12px Arial'
+            context.fillText(this.frameX, this.x, this.y - 5)
+            context.fillText(this.grounded, this.x + 20, this.y - 5)
+          }
+
+          context.drawImage(
+            this.image,
+            this.frameX * this.width,
+            this.frameY * this.height - 14,
+            this.width,
+            this.height,
+            this.flip ? this.x * -1 - this.width : this.x,
+            this.y,
+            this.width,
+            this.height
+          )
     }
 
     shoot(){
@@ -72,7 +124,7 @@ export default class player{
             if(this.pistolAmmoFired === 10) this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
-                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 1));
+                new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 2));
         }
         else if (this.pistolAmmoFired >= this.ammunition && this.canReaload){
             setTimeout(() => {this.pistolAmmoFired = 0;}, this.realoadTime);
