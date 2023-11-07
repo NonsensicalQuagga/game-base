@@ -1,8 +1,9 @@
 export default class Projectile{
-    constructor(game, x, y, speedX, speedY, damage){
-        this.game = game;
-        this.width = 4;
-        this.height = 4;
+    
+    constructor(game, x, y, speedX, speedY, damage, width, height){
+        this.game = game; 
+        this.width = width;
+        this.height = height;
         this.x = x;
         this.y = y;
 
@@ -10,8 +11,6 @@ export default class Projectile{
         this.speedY = speedY;
         this.damage = damage;
         this.markedForDeletion = false;
-        
-
     }
 
     update(){

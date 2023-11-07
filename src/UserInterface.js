@@ -26,13 +26,21 @@ export default class UserInterface{
           20,
           90
       );
-          else{
+          else if(this.game.player.gun === 2){
             context.fillText(  
               `Shells: ${(this.game.player.ammunition - this.game.player.shotgunAmmoFired)} / ${(this.game.player.ammunition)}`,
               20,
               90
             );
           }
+          else {
+            context.fillText(  
+              `Energy: ${(this.game.player.ammunition - this.game.player.beamAmmoFired)} / ${(this.game.player.ammunition)}`,
+              20,
+              90
+            );
+          }
+        
         context.fillText(
           `Score: ${(this.game.score)}`,
           20,

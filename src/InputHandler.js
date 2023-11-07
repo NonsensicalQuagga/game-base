@@ -51,12 +51,21 @@ export default class InputHandler {
                     this.game.player.gun = 2;
                     this.game.player.shotgunStats();
                 } 
-                else{
+                else if (this.game.player.gun === 2){
                     this.game.player.gun = 1;
                     this.game.player.pistolStats();
                 } 
+                else{
+                    this.game.player.gun = 1;
+                    this.game.player.pistolStats();
+                }
                 console.log("swap gun")
             }
+            if(event.key === 'e')if(this.game.player.beamAmmoFired == 0) {
+                this.game.player.gun = 3;
+                this.game.player.beamStats();
+            }
+            
 
         })
         window.addEventListener('keyup', (event) => {
