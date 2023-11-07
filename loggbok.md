@@ -24,6 +24,14 @@ Komma ihåg: Borde skapa en till fiende.
 ---
 19-10-2023
 
-Skapat paralax scrolling och en ny fiende
+Skapat paralax scrolling och en ny fiende.
 
-Hadde lite problem med ad göra en till fiende
+Hadde lite problem med ad göra en till fiende.
+---
+07-11-2023
+
+Sprite för player character. Beam som skjutläge. 
+
+Dåligt: Har ingen grafik.
+
+Komma ihåg: Sprites för fiender och hitbox
