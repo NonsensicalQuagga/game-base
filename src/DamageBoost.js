@@ -17,6 +17,6 @@ export default class DamageBoost extends Enemy{
 
     effect(){
         this.game.damageModifier += this.damageincrease;
-        setTimeout(() => this.game.damageModifier -= this.damageincrease, 30000)
+        setTimeout(() => {if(!(this.game.damageModifier <= 1)){ this.game.damageModifier -= this.damageincrease}}, 30000)
     }
 }

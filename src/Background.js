@@ -1,7 +1,8 @@
 import skyImage from './assets/layers/sky_layer.png'
 import middleImage from './assets/layers/middle_layer.png'
 import groundImage from './assets/layers/ground_layer.png'
-import foregroundImage from './assets/layers/foreground_layer.png'
+import foregroundImage from './assets/layers/foreground_layer.png';
+import backgroundImage from './assets/layers/background.png';
 import Layer from './Layer'
 
 export default class Background {
@@ -19,7 +20,13 @@ export default class Background {
     const foreground = new Image();
     foreground.src = foregroundImage;
     this.foregroundLayer = new Layer(this.game, foreground, 1708, 500, 0.8);
+    const background = new Image();
+    background.src = backgroundImage;
+    this.backgroundLayer = new Layer(this.game, background, 854, 480, 0)
+    
+    
     this.layers = [
+      this.backgroundLayer,
       this.skyLayer,
       this.middleLayer,
       this.groundLayer,

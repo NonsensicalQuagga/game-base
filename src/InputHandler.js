@@ -22,13 +22,18 @@ export default class InputHandler {
                     this.game.score = 0;
                     this.game.gameTime = 0;
                     this.game.enemies = [];
+                    this.game.damageModifier = 1;
                     this.game.player.lastProjectile = 0;
                     this.game.player.projectiles = [];
                     this.game.player.x = 50;
                     this.game.player.y = 100;
                     this.game.player.shotgunAmmoFired = 0;
                     this.game.player.pistolAmmoFired = 0;
-                    this.game.player.beamAmmoFired = 0
+                    this.game.player.beamAmmoFired = 0;
+                    this.game.player.beamAmmunition = 0;
+                    this.game.player.gun = 1;
+                    this.game.player.pistolStats();
+                    this.game.player.canUseBeam = false;
                 }
             }
             
@@ -67,7 +72,7 @@ export default class InputHandler {
                 console.log("swap gun")
             }
             
-            if(event.key === 'e')if(this.game.player.beamAmmoFired <= 150 && this.game.player.canUseBeam) {
+            if(event.key === 'e')if(this.game.player.beamAmmoFired <= this.game.player.beamAmmunition - 10 && this.game.player.canUseBeam) {
                 this.game.player.gun = 3;
                 this.game.player.beamStats();
             }
