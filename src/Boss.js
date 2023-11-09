@@ -12,6 +12,7 @@ export default class Boss extends Enemy{
         this.scorePoints = 8000;
         this.color = '#089c54';
         this.collisionDamage = 5;
+        this.hasSprite = false;
     }
 
 }

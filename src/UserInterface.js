@@ -35,7 +35,7 @@ export default class UserInterface{
           }
           else {
             context.fillText(  
-              `Energy: ${(this.game.player.ammunition - this.game.player.beamAmmoFired)} / ${(this.game.player.ammunition)}`,
+              `Energy: ${(this.game.player.beamAmmunition - this.game.player.beamAmmoFired)} / ${(this.game.player.beamAmmunition)}`,
               20,
               90
             );
