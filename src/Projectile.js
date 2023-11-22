@@ -1,7 +1,7 @@
-export default class Projectile{
-    
-    constructor(game, x, y, speedX, speedY, damage, width, height){
-        this.game = game; 
+export default class Projectile {
+
+    constructor(game, x, y, speedX, speedY, damage, width, height) {
+        this.game = game;
         this.width = width;
         this.height = height;
         this.x = x;
@@ -13,13 +13,13 @@ export default class Projectile{
         this.markedForDeletion = false;
     }
 
-    update(){
+    update() {
         this.x += this.speedX;
-        this.y += this.speedY;  
+        this.y += this.speedY;
         if (this.x > this.game.width) this.markedForDeletion = true;
     }
 
-    draw(context){
+    draw(context) {
         context.fillStyle = '#ff0'
         context.fillRect(this.x, this.y, this.width, this.height)
     }

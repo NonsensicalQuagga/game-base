@@ -1,7 +1,7 @@
 import Enemy from "./Enemy";
 
-export default class HealthPotion extends Enemy{
-    constructor(game){
+export default class HealthPotion extends Enemy {
+    constructor(game) {
         super(game)
         this.collisionDamage = 0;
         this.x = game.width;
@@ -13,8 +13,8 @@ export default class HealthPotion extends Enemy{
         this.speedX = -3;
         this.lives = -69;
     }
-    effect(){
+    effect() {
         this.game.life += 2;
     }
-    
+
 }

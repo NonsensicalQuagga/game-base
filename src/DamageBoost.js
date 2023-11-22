@@ -1,7 +1,7 @@
 import Enemy from "./Enemy";
 
-export default class DamageBoost extends Enemy{
-    constructor(game){
+export default class DamageBoost extends Enemy {
+    constructor(game) {
         super(game)
         this.collisionDamage = 0;
         this.x = game.width;
@@ -15,8 +15,8 @@ export default class DamageBoost extends Enemy{
         this.lives = -69;
     }
 
-    effect(){
+    effect() {
         this.game.damageModifier += this.damageincrease;
-        setTimeout(() => {if(!(this.game.damageModifier <= 1)){ this.game.damageModifier -= this.damageincrease}}, 30000)
+        setTimeout(() => { if (!(this.game.damageModifier <= 1)) { this.game.damageModifier -= this.damageincrease } }, 30000)
     }
 }

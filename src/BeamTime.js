@@ -1,7 +1,7 @@
 import Enemy from "./Enemy";
 
-export default class BeamTime extends Enemy{
-    constructor(game){
+export default class BeamTime extends Enemy {
+    constructor(game) {
         super(game);
         this.collisionDamage = 0;
         this.x = game.width;
@@ -15,7 +15,7 @@ export default class BeamTime extends Enemy{
         this.lives = -69;
     }
 
-    effect(){
+    effect() {
         this.game.player.gun = 3;
         this.game.player.beamStats();
         this.game.player.canUseBeam = true;

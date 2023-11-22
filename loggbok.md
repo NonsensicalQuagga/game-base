@@ -35,3 +35,8 @@ Sprite för player character. Beam som skjutläge.
 Dåligt: Har ingen grafik.
 
 Komma ihåg: Sprites för fiender och hitbox
+---
+16-11-2023
+koden för enemy grafik var från början kass (fixade det vid et tilfälle som jag inte dokumenterat)
+
+ny enemy

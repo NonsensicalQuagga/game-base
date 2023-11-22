@@ -17,16 +17,15 @@ export default class Background {
     ground.src = groundImage;
     this.groundLayer = new Layer(this.game, ground, 1644, 500, 0.6);
     const background = new Image();
-    backgroundImage
     background.src = backgroundImage;
-    
+
     this.backgroundLayer = new Layer(this.game, background, 854, 480, 0.1)
-    
-    
+
+
     this.layers = [
       this.backgroundLayer,
-      this.skyLayer,
-      this.middleLayer,
+      //this.skyLayer,
+      //this.middleLayer,
       this.groundLayer,
     ]
   }
