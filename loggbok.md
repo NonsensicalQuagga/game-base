@@ -40,3 +40,10 @@ Komma ihåg: Sprites för fiender och hitbox
 koden för enemy grafik var från början kass (fixade det vid et tilfälle som jag inte dokumenterat)
 
 ny enemy
+
+---
+30-11-2023
+
+spelet går att pausa. Finns någon bug när du dör som gör att texten visas på din skärm när den inte borde men jag vet inte om varför det händer.
+
+Powerups fick olika pumpor som sprites
