@@ -14,9 +14,15 @@ export default class InputHandler {
             //if (event.key === ' ') this.game.player.shoot();
 
             if (event.key === 'd') this.game.debug = !this.game.debug;
-
-            if (event.key === 'o') {
+            
+            if (event.key === 'p' && !this.game.actuallyOver) {
+                this.game.paused = !this.game.paused;
                 this.game.gameOver = !this.game.gameOver;
+            }
+
+            if (event.key === 'o' && !this.game.paused) {
+                this.game.gameOver = !this.game.gameOver;
+                this.game.actuallyOver = !this.game.actuallyOver;
                 if (!this.game.gameOver) {
                     this.game.life = 3;
                     this.game.score = 0;

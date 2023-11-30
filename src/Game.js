@@ -17,6 +17,8 @@ export default class Game {
     this.background = new Background(this);
     this.keys = [];
     this.gameOver = false;
+    this.actuallyOver = false;
+    this.paused = false;
     this.gravity = 1;
     this.debug = false;
     this.gameTime = 0;
@@ -37,9 +39,8 @@ export default class Game {
   update(deltaTime) {
     if (!this.gameOver) {
       this.gameTime += deltaTime;
-    }
-
-    this.background.update();
+      
+      this.background.update();
 
     this.player.update(deltaTime);
 
@@ -71,7 +72,10 @@ export default class Game {
         else enemy.lives -= 20 * this.damageModifier;
         this.life -= enemy.collisionDamage * this.damageModifier;
         this.score += enemy.scorePoints;
-        if (this.life <= 0) this.gameOver = true;
+        if (this.life <= 0){
+          this.gameOver = true;
+          this.actuallyOver = true;
+        } 
       }
 
       this.player.projectiles.forEach((projectile) => {
@@ -97,11 +101,12 @@ export default class Game {
         }
       });
     });
-
+    
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion);
     this.powerUps = this.powerUps.filter(
       (powerUp) => !powerUp.markedForDeletion
-    );
+      );
+    }
   }
 
   draw(context) {
