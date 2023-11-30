@@ -9,7 +9,7 @@ export default class Boss extends Enemy {
         this.y = Math.random() * (this.game.height * 0.9 - this.height);
         this.speedX = Math.random() * -0.5 - 0.7;
         this.lives = 3;
-        this.scorePoints = 8000;
+        this.scorePoints = 1000;
         this.color = '#089c54';
         this.collisionDamage = 1;
         this.hasSprite = true;

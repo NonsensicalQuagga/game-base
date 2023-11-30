@@ -3,7 +3,9 @@ export default class Gun {
     constructor(game) {
         this.fireRate = 0.1;
         this.shotgunAmmoFired = 0;
+        this.shotgunReaload = false;
         this.pistolAmmoFired = 0;
+        this.pistolReaload = false;
         this.beamAmmoFired = 0;
         this.beamReaload = 0;
         this.beamRealoadInterval = 150;
@@ -20,16 +22,16 @@ export default class Gun {
     pistol() {
         if (this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.pistolAmmoFired < this.ammunition) {
             this.pistolAmmoFired++;
-            if (this.pistolAmmoFired === 10) this.canReaload = true;
+            if (this.pistolAmmoFired === 10) this.pistolReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height / 2, 5, 0, 2, 4, 4));
         }
-        else if (this.pistolAmmoFired >= this.ammunition && this.canReaload) {
+        else if (this.pistolAmmoFired >= this.ammunition && this.pistolReaload) {
             setTimeout(() => { this.pistolAmmoFired = 0; }, this.realoadTime);
-            this.canReaload = false;
+            this.pistolReaload = false;
         }
-        else if (!this.canReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.canReaload = true;
+        //else if (!this.pistolReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.pistolReaload = true;
 
 
     }
@@ -42,7 +44,7 @@ export default class Gun {
     shotgun() {
         if (this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.shotgunAmmoFired < this.ammunition) {
             this.shotgunAmmoFired++;
-            if (this.shotgunAmmoFired === 2) this.canReaload = true;
+            if (this.shotgunAmmoFired === 2) this.shotgunReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             /*this.projectiles.push(
                 new Projectile(this.game, this.x + this.width, this.y + this.height/2, 5, 0, 0.2));*/
@@ -54,11 +56,11 @@ export default class Gun {
                 this.projectiles.push(shotgunpellet)
             }
         }
-        else if (this.shotgunAmmoFired >= this.ammunition && this.canReaload) {
+        else if (this.shotgunAmmoFired >= this.ammunition && this.shotgunReaload) {
             setTimeout(() => { this.shotgunAmmoFired = 0; }, this.realoadTime);
-            this.canReaload = false;
+            this.shotgunReaload = false;
         }
-        else if (!this.canReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.canReaload = true;
+       // else if (!this.shotgunReaload && this.game.gameTime * 0.001 > this.lastProjectile + 3) this.shotgunReaload = true;
     }
 
     shotgunStats() {
@@ -71,7 +73,6 @@ export default class Gun {
     beam() {
         if (this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.beamAmmoFired < this.beamAmmunition) {
             this.beamAmmoFired++;
-            if (this.beamAmmoFired === 1) this.canReaload = true;
             this.lastProjectile = this.game.gameTime * 0.001;
             let beamPart = new Projectile(this.game, this.x + this.width, this.y + this.height / 4, 5, 0, 0.5, this.game.width, 30);
             setTimeout(() => { beamPart.markedForDeletion = true }, 1)
