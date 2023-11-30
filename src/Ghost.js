@@ -8,7 +8,7 @@ export default class Ghost extends Enemy {
         this.x = this.game.width;
         this.y = Math.random() * (this.game.height * 0.9 - this.height);
         this.speedX = Math.random() * -1.5 - 4;
-        this.lives = 1.5;
+        this.lives = 2;
         this.scorePoints = 1000;
         this.color = '#0f0';
         this.hasSprite = true;
