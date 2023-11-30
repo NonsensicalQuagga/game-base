@@ -11,19 +11,6 @@ export default class player extends Gun {
 
     this.projectiles = []
     this.lastProjectile = this.game.gameTime;
-    this.ammunition = 10;
-    this.realoadTime = 1000;  //milliseconds
-    this.canReaload = false;
-    this.gun = 1;
-    this.lastGun = 1;
-    this.fireRate = 0.1;
-    this.shotgunAmmoFired = 0;
-    this.pistolAmmoFired = 0;
-    this.beamAmmoFired = 0;
-    this.beamReaload = 0;
-    this.beamRealoadInterval = 150;
-    this.canUseBeam = false;
-    this.beamAmmunition = 0;
 
     this.speedX = 0;
     this.speedY = 0;
@@ -87,13 +74,7 @@ export default class player extends Gun {
     // reset frameX when it reaches maxFrame
     if (this.frameX >= this.maxFrame) {
       this.frameX = 0;
-    }/*
-        if (this.beamAmmoFired > 0 && this.beamReaload > this.beamRealoadInterval && this.gun != 3){
-            this.beamAmmoFired--;
-            this.beamReaload = 0;
-        } else{
-            this.beamReaload += deltaTime;
-        }*/ // Beam gains ammo passively
+    }
   }
 
   draw(context) {

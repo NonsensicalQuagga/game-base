@@ -1,14 +1,15 @@
 import Projectile from "./Projectile";
 export default class Gun {
     constructor(game) {
+        this.gun = 1;
         this.fireRate = 0.1;
+        this.ammunition = 10;
+        this.realoadTime = 1000; 
         this.shotgunAmmoFired = 0;
         this.shotgunReaload = false;
         this.pistolAmmoFired = 0;
         this.pistolReaload = false;
         this.beamAmmoFired = 0;
-        this.beamReaload = 0;
-        this.beamRealoadInterval = 150;
         this.canUseBeam = false;
         this.beamAmmunition = 0;
     }
