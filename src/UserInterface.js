@@ -57,13 +57,31 @@ export default class UserInterface{
       context.fillText(
           'Paused',
           this.game.width/2,
-          this.game.height/2 
+          this.game.height/2 -60
       );
       context.font = `20px ${this.fontFamily}`
       context.fillText(
           'Press p to start again.',
           this.game.width/2,
-          this.game.height/2 + 30 
+          this.game.height/2 -30
+      );
+      context.font = `20px ${this.fontFamily}`
+      context.fillText(
+          'Move with arrow keys.',
+          this.game.width/2,
+          this.game.height/2 
+      );
+      context.font = `20px ${this.fontFamily}`
+      context.fillText(
+          'Shoot with spacebar.',
+          this.game.width/2,
+          this.game.height/2 + 30
+      );
+      context.font = `20px ${this.fontFamily}`
+      context.fillText(
+          'Swap gun with q or e.',
+          this.game.width/2,
+          this.game.height/2 + 60 
       );}
 
         if(this.game.actuallyOver){

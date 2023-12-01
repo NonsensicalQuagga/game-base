@@ -16,9 +16,9 @@ export default class Game {
     this.ui = new UserInterface(this);
     this.background = new Background(this);
     this.keys = [];
-    this.gameOver = false;
+    this.gameOver = true;
     this.actuallyOver = false;
-    this.paused = false;
+    this.paused = true;
     this.gravity = 1;
     this.debug = false;
     this.gameTime = 0;
