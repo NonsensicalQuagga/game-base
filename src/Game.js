@@ -58,7 +58,6 @@ export default class Game {
       powerUp.update(deltaTime);
       if (this.checkCollision(this.player, powerUp)) {
         powerUp.markedForDeletion = true;
-        this.life += powerUp.collisionDamage;
         this.score -= powerUp.scorePoints;
         powerUp.effect();
       }
@@ -112,9 +111,9 @@ export default class Game {
   draw(context) {
     this.background.draw(context);
     this.player.draw(context);
-    this.ui.draw(context);
     this.enemies.forEach((enemy) => enemy.draw(context));
     this.powerUps.forEach((enemy) => enemy.draw(context));
+    this.ui.draw(context);
   }
 
   addGhost() {

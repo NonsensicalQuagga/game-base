@@ -28,6 +28,7 @@ export default class InputHandler {
                     this.game.score = 0;
                     this.game.gameTime = 0;
                     this.game.enemies = [];
+                    this.game.powerUps = [];
                     this.game.damageModifier = 1;
                     this.game.player.lastProjectile = 0;
                     this.game.player.projectiles = [];

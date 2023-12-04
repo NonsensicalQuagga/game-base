@@ -14,7 +14,10 @@ export default class Enemy {
         if (this.x < 0 && !this.healthPotion) {
             this.markedForDeletion = true;
             this.game.life -= this.collisionDamage;
-            if (this.game.life <= 0) this.game.gameOver = true;
+            if (this.game.life <= 0){
+                this.game.gameOver = true;
+                this.game.actuallyOver = true;
+            }
         }
 
         if (this.speedX < 0) {
