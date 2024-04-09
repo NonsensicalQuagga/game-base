@@ -32,15 +32,15 @@ export default class player extends Gun {
   }
 
   update(deltaTime) {
-    if (this.game.keys.includes('ArrowLeft') &&
+    if (this.game.keys.includes('a') &&
       !(this.x <= 0)) this.speedX = -this.maxSpeed;
-    else if (this.game.keys.includes('ArrowRight') &&
+    else if (this.game.keys.includes('d') &&
       !(this.x + this.width >= this.game.width)) this.speedX = this.maxSpeed;
     else this.speedX = 0;
 
-    if (this.game.keys.includes('ArrowUp') &&
+    if (this.game.keys.includes('w') &&
       !(this.y <= 0)) this.speedY = -this.maxSpeed;
-    else if (this.game.keys.includes('ArrowDown') &&
+    else if (this.game.keys.includes('s') &&
       !(this.y + this.height >= this.game.height)) this.speedY = this.maxSpeed;
     else this.speedY = 0;
 

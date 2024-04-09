@@ -12,6 +12,8 @@ export default class Gun {
         this.beamAmmoFired = 0;
         this.canUseBeam = false;
         this.beamAmmunition = 0;
+        this.assaultRifleAmmoFired = 0;
+        this.assaultRifleReload = false;
     }
 
     shoot() {
@@ -86,4 +88,28 @@ export default class Gun {
         this.bulletsFired = this.beamAmmoFired;
         this.fireRate = 0.01;
     }
+    
+    assaultRifle() {
+        if (this.game.gameTime * 0.001 > this.lastProjectile + this.fireRate && this.assaultRifleAmmoFired < this.ammunition) {
+            this.assaultRifleAmmoFired++;
+            if (this.assaultRifleAmmoFired === 30) this.assaultRifleReload = true;
+            this.lastProjectile = this.game.gameTime * 0.001;
+            let spread = Math.random()  - 0.5;
+            let assaultRifleBullet = new Projectile(this.game, this.x + this.width, this.y + this.height / 2, Math.random() + Math.sqrt(100 - spread * spread), spread, 1, 4, 4); //Math.sqrt(5 * 5 - spread * spread)
+            this.projectiles.push(assaultRifleBullet)
+        }
+        else if (this.assaultRifleAmmoFired >= this.ammunition && this.assaultRifleReload) {
+            setTimeout(() => { this.assaultRifleAmmoFired = 0; }, this.realoadTime);
+            this.assaultRifleReload = false;
+        }
+    }
+    
+    assaultRifleStats() {
+        this.ammunition = 30;
+        this.realoadTime = 2000;
+        this.bulletsFired = this.assaultRifleAmmoFired;
+        this.fireRate = 0.04;
+    }
+
+
 }
