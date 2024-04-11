@@ -120,7 +120,7 @@ export default class Gun {
             this.autoShotgunAmmoFired++; 
             this.lastProjectile = this.game.gameTime * 0.001;
             for (let i = 0; i < 10; i++) {
-                let spread = Math.random() * 3 - 1.5;
+                let spread = Math.random() * 4 - 2;
                 let shotgunpellet = new Projectile(this.game, this.x + this.width, this.y + this.height / 2, Math.random() + Math.sqrt(50 - spread * spread), spread, 0.5, 4, 4); //Math.sqrt(5 * 5 - spread * spread)
                 setTimeout(() => { shotgunpellet.markedForDeletion = true }, 700)
                 this.projectiles.push(shotgunpellet)
