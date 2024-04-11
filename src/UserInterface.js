@@ -33,14 +33,30 @@ export default class UserInterface{
               90
             );
           }
-          else {
+          else if(this.game.player.gun === 3){
             context.fillText(  
               `Energy: ${(this.game.player.beamAmmunition - this.game.player.beamAmmoFired)} / ${(this.game.player.beamAmmunition)}`,
               20,
               90
             );
           }
-        
+          else if(this.game.player.gun === 4){
+            context.fillText(  
+              `Bullets: ${(this.game.player.ammunition - this.game.player.assaultRifleAmmoFired)} / ${(this.game.player.ammunition)}`,
+              20,
+              90
+            );
+          }
+          else if(this.game.player.gun === 5){
+            context.fillText(  
+              `Shells: ${(this.game.player.autoShotgunAmmo - this.game.player.autoShotgunAmmoFired)} / ${(this.game.player.autoShotgunAmmo)}`,
+              20,
+              90
+            );
+          }
+
+
+
         context.fillText(
           `Score: ${(this.game.score)}`,
           20,

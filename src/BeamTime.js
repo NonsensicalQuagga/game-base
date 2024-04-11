@@ -42,5 +42,6 @@ export default class BeamTime extends Enemy {
         this.game.player.beamStats();
         this.game.player.canUseBeam = true;
         this.game.player.beamAmmunition += 100;
+        this.game.player.autoShotgunAmmo += 30;
     }
 }
